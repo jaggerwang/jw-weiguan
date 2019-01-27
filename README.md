@@ -16,3 +16,37 @@
   <img src="https://user-images.githubusercontent.com/1255011/51241781-83a84d00-19b9-11e9-9408-e5f831cd2c76.jpeg" width="180">
   <img src="https://user-images.githubusercontent.com/1255011/51241782-8440e380-19b9-11e9-9a11-06994fe701aa.jpeg" width="180">
 </p>
+
+## How to run
+
+### Install flutter sdk
+
+Please refer to flutter official document [Install](https://flutter.io/docs/get-started/install).
+
+### Clone repository
+
+```bash
+git clone git@github.com:jaggerwang/jw-weiguan.git && cd jw-weiguan
+```
+
+### Install pub packages
+
+```bash
+flutter packages get
+```
+
+### Connect a device or run a simulator
+
+Connet your Android or iOS device to your computer or run a simulator using the following commands.
+
+```bash
+$ emulator -list-avds
+9.0-1440p
+$ emulator -avd 9.0-1440p
+```
+
+### Build and run app
+
+```bash
+flutter run
+```
