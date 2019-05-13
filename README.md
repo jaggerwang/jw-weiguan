@@ -2,7 +2,7 @@
 
 [Weiguan(围观)](https://weiguan.app/) is a social media app developed using Google's Flutter UI framework. This repository contains the core code of weiguan app, just for learning and studying purpose.
 
-[相关视频课程](https://blog.jaggerwang.net/jw-course-flutter-mobile-app-development/)
+本项目为 [叽歪课堂 - Flutter 移动应用开发实战](https://blog.jaggerwang.net/jw-course-flutter-mobile-app-development/) 实战项目参考代码。
 
 ## Feature Video
 
