@@ -6,7 +6,7 @@
 
 ## Feature Video
 
-[![Weiguan Lite](http://i3.ytimg.com/vi/TN_p9I55PzI/maxresdefault.jpg)](https://youtu.be/_ZjPmv3Mzwc)
+[![叽歪课堂 - Flutter 移动应用开发实战 - 功能演示](http://i3.ytimg.com/vi/TN_p9I55PzI/maxresdefault.jpg)](https://youtu.be/_ZjPmv3Mzwc)
 
 ## Screenshots
 
