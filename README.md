@@ -1,4 +1,4 @@
-# Weiguan APP Demo
+# Weiguan App Demo
 
 [Weiguan(围观)](https://weiguan.app/) is a social media app developed using Google's Flutter UI framework. This repository contains the core code of weiguan app, just for learning and studying purpose.
 
