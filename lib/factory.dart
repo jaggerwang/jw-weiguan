@@ -91,7 +91,7 @@ class WgFactory {
   Future<PersistCookieJar> getCookieJar() async {
     if (_cookieJar == null) {
       var docDir = await getApplicationDocumentsDirectory();
-      _cookieJar = PersistCookieJar('${docDir.path}/cookies');
+      _cookieJar = PersistCookieJar(dir: '${docDir.path}/cookies');
     }
     return _cookieJar;
   }

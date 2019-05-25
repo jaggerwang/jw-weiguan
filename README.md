@@ -50,3 +50,21 @@ $ emulator -avd 9.0-1440p
 ```bash
 flutter run
 ```
+
+This will run app in production mode, it will disable debug log and request real api server. If you want to run in development mode, you can specify the entry-point file to `lib/main_dev.dart`.
+
+```bash
+flutter run -t lib/main_dev.dart
+```
+
+> The video player can not work on iOS simulator, you should use a real device.
+
+## Changelog
+
+### 2019-05-25
+
+1. Upgrade Flutter SDK to v1.5.
+
+### 2019-01-14
+
+1. First release.
