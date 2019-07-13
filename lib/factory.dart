@@ -18,7 +18,6 @@ class WgFactory {
   static WgFactory _singleton;
 
   Map<String, Logger> _loggers = {};
-  Persistor<AppState> _persistor;
   Store<AppState> _store;
   PersistCookieJar _cookieJar;
   WgService _wgService;
@@ -50,25 +49,32 @@ class WgFactory {
     return _loggers[name];
   }
 
-  Persistor<AppState> getPersistor() {
-    if (_persistor == null) {
-      _persistor = Persistor<AppState>(
-        storage: FlutterStorage(WgConfig.packageInfo.packageName),
-        decoder: (json) {
-          var state = AppState.fromJson(json);
-          if (compareVersion(state.version, WgConfig.packageInfo.version, 2) !=
-              0) {
-            state = AppState();
-          }
-          return state;
-        },
-      );
-    }
-    return _persistor;
-  }
-
-  Store<AppState> getStore() {
+  Future<Store<AppState>> getStore() async {
     if (_store == null) {
+      final persistor = Persistor<AppState>(
+        storage: FlutterStorage(key: WgConfig.packageInfo.packageName),
+        serializer: JsonSerializer<AppState>((json) {
+          if (json == null) {
+            return AppState();
+          }
+          return AppState.fromJson(json);
+        }),
+        transforms: Transforms(
+          onLoad: [
+            (state) {
+              if (compareVersion(
+                      state.version, WgConfig.packageInfo.version, 2) !=
+                  0) {
+                state = AppState();
+              }
+              return state;
+            }
+          ],
+        ),
+      );
+
+      final initialState = await persistor.load();
+
       final List<Middleware<AppState>> wms = [];
       if (WgConfig.isLogAction) {
         wms.add(LoggingMiddleware<AppState>(
@@ -76,15 +82,16 @@ class WgFactory {
       }
       wms.addAll([
         thunkMiddleware,
-        getPersistor().createMiddleware(),
+        persistor.createMiddleware(),
       ]);
 
       _store = Store<AppState>(
         appReducer,
-        initialState: AppState(),
+        initialState: initialState ?? AppState(),
         middleware: wms,
       );
     }
+
     return _store;
   }
 

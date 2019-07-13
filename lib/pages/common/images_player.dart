@@ -56,7 +56,7 @@ class _Body extends StatelessWidget {
               ? images
                   .map<CachedNetworkImage>((image) => CachedNetworkImage(
                         imageUrl: image.url,
-                        placeholder: Container(
+                        placeholder: (context, url) => Container(
                           alignment: Alignment.center,
                           child: CircularProgressIndicator(),
                         ),

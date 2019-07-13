@@ -30,35 +30,32 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
       converter: (store) => _ViewModel(
-            user: store.state.user.users[widget.userId.toString()] ??
-                UserEntity(id: widget.userId),
-            postsPublished: (store
-                        .state.post.postsPublished[widget.userId.toString()] ??
-                    [])
+        user: store.state.user.users[widget.userId.toString()] ??
+            UserEntity(id: widget.userId),
+        postsPublished:
+            (store.state.post.postsPublished[widget.userId.toString()] ?? [])
                 .map<PostEntity>((v) => store.state.post.posts[v.toString()])
                 .toList(),
-            postsLiked: (store
-                        .state.post.postsLiked[widget.userId.toString()] ??
-                    [])
+        postsLiked:
+            (store.state.post.postsLiked[widget.userId.toString()] ?? [])
                 .map<PostEntity>((v) => store.state.post.posts[v.toString()])
                 .toList(),
-            usersFollowing: (store
-                        .state.user.usersFollowing[widget.userId.toString()] ??
-                    [])
+        usersFollowing:
+            (store.state.user.usersFollowing[widget.userId.toString()] ?? [])
                 .map<UserEntity>((v) => store.state.user.users[v.toString()])
                 .toList(),
-          ),
+      ),
       builder: (context, vm) => Scaffold(
-            body: DefaultTabController(
-              length: _tabs.length,
-              child: _Body(
-                key: _bodyKey,
-                store: StoreProvider.of<AppState>(context),
-                vm: vm,
-                tabs: _tabs,
-              ),
-            ),
+        body: DefaultTabController(
+          length: _tabs.length,
+          child: _Body(
+            key: _bodyKey,
+            store: StoreProvider.of<AppState>(context),
+            vm: vm,
+            tabs: _tabs,
           ),
+        ),
+      ),
     );
   }
 }
@@ -138,9 +135,9 @@ class _BodyState extends State<_Body> {
     widget.store.dispatch(userInfoAction(
       userId: widget.vm.user.id,
       onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(notice.message),
-            duration: notice.duration,
-          )),
+        content: Text(notice.message),
+        duration: notice.duration,
+      )),
     ));
   }
 
@@ -477,9 +474,9 @@ class _BodyState extends State<_Body> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => Post(
-                        key: Key(widget.vm.postsPublished[index].id.toString()),
-                        post: widget.vm.postsPublished[index],
-                      ),
+                    key: Key(widget.vm.postsPublished[index].id.toString()),
+                    post: widget.vm.postsPublished[index],
+                  ),
                   childCount: widget.vm.postsPublished.length,
                 ),
               ),
@@ -522,9 +519,9 @@ class _BodyState extends State<_Body> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => Post(
-                        key: Key(widget.vm.postsLiked[index].id.toString()),
-                        post: widget.vm.postsLiked[index],
-                      ),
+                    key: Key(widget.vm.postsLiked[index].id.toString()),
+                    post: widget.vm.postsLiked[index],
+                  ),
                   childCount: widget.vm.postsLiked.length,
                 ),
               ),
@@ -567,9 +564,9 @@ class _BodyState extends State<_Body> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => UserTile(
-                        key: Key(widget.vm.usersFollowing[index].id.toString()),
-                        user: widget.vm.usersFollowing[index],
-                      ),
+                    key: Key(widget.vm.usersFollowing[index].id.toString()),
+                    user: widget.vm.usersFollowing[index],
+                  ),
                   childCount: widget.vm.usersFollowing.length,
                 ),
               ),
@@ -600,6 +597,8 @@ class _BodyState extends State<_Body> {
                       return _buildPostsLiked(context);
                     } else if (name == '关注') {
                       return _buildUsersFollowing(context);
+                    } else {
+                      return null;
                     }
                   },
                 ),
@@ -615,8 +614,8 @@ class _BodyState extends State<_Body> {
         NestedScrollView(
           controller: scrollController,
           headerSliverBuilder: (context, innerBoxIsScrolled) => <Widget>[
-                _buildSilverAppBar(context, innerBoxIsScrolled),
-              ],
+            _buildSilverAppBar(context, innerBoxIsScrolled),
+          ],
           body: _buildTabBarView(),
         ),
         Visibility(

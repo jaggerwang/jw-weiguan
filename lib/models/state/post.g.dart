@@ -8,12 +8,16 @@ part of 'post.dart';
 
 PostState _$PostStateFromJson(Map<String, dynamic> json) {
   return PostState(
-      posts: (json['posts'] as Map<String, dynamic>)?.map((k, e) => MapEntry(k,
-          e == null ? null : PostEntity.fromJson(e as Map<String, dynamic>))),
+      posts: (json['posts'] as Map<String, dynamic>)?.map(
+        (k, e) => MapEntry(k,
+            e == null ? null : PostEntity.fromJson(e as Map<String, dynamic>)),
+      ),
       postsPublished: (json['postsPublished'] as Map<String, dynamic>)?.map(
-          (k, e) => MapEntry(k, (e as List)?.map((e) => e as int)?.toList())),
+        (k, e) => MapEntry(k, (e as List)?.map((e) => e as int)?.toList()),
+      ),
       postsLiked: (json['postsLiked'] as Map<String, dynamic>)?.map(
-          (k, e) => MapEntry(k, (e as List)?.map((e) => e as int)?.toList())),
+        (k, e) => MapEntry(k, (e as List)?.map((e) => e as int)?.toList()),
+      ),
       postsFollowing:
           (json['postsFollowing'] as List)?.map((e) => e as int)?.toList());
 }

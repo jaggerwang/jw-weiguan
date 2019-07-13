@@ -9,11 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:weiguan/app.dart';
+import 'package:weiguan/factory.dart';
 
-void main() {
+void main() async {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final store = await WgFactory().getStore();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(WgApp());
+    await tester.pumpWidget(WgApp(store));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

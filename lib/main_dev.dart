@@ -4,16 +4,17 @@ import 'package:package_info/package_info.dart';
 
 import 'app.dart';
 import 'config.dart';
+import 'factory.dart';
 
-void main() {
-  PackageInfo.fromPlatform().then((packageInfo) {
-    WgConfig.packageInfo = packageInfo;
-    WgConfig.debug = true;
-    WgConfig.loggerLevel = Level.ALL;
-    WgConfig.isLogAction = true;
-    WgConfig.isLogApi = true;
-    WgConfig.isMockApi = true;
+void main() async {
+  WgConfig.packageInfo = await PackageInfo.fromPlatform();
+  WgConfig.debug = true;
+  WgConfig.loggerLevel = Level.ALL;
+  WgConfig.isLogAction = true;
+  WgConfig.isLogApi = true;
+  WgConfig.isMockApi = true;
 
-    runApp(WgApp());
-  });
+  final store = await WgFactory().getStore();
+
+  runApp(WgApp(store));
 }

@@ -40,7 +40,7 @@ class WgService {
 
   WgService(PersistCookieJar cookieJar) {
     _client.options.baseUrl = WgConfig.wgApiBaseUrl;
-    _client.cookieJar = cookieJar;
+    _client.interceptors.add(CookieManager(cookieJar));
   }
 
   Future<WgApiResponse> request(
@@ -48,8 +48,6 @@ class WgService {
     String path, {
     dynamic data,
   }) async {
-    _client.options.method = method;
-
     if (WgConfig.isLogApi) {
       _logger.fine('request: $method $path');
     }
@@ -64,7 +62,7 @@ class WgService {
         response = await _client.request(
           path,
           data: data,
-          options: _client.options,
+          options: Options(method: method),
         );
       } catch (e) {
         return WgApiResponse(

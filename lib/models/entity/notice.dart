@@ -1,8 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../utils/json.dart';
-
 part 'notice.g.dart';
 
 enum NoticeLevel { info, warning, error }
@@ -12,10 +10,6 @@ enum NoticeLevel { info, warning, error }
 class NoticeEntity {
   final String message;
   final NoticeLevel level;
-  @JsonKey(
-    fromJson: durationFromMillseconds,
-    toJson: durationToMilliseconds,
-  )
   final Duration duration;
 
   NoticeEntity({

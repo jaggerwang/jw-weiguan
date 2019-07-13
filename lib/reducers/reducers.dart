@@ -1,5 +1,3 @@
-import 'package:redux_persist/redux_persist.dart';
-
 import '../models/models.dart';
 import '../actions/actions.dart';
 import 'account.dart';
@@ -14,11 +12,6 @@ AppState appReducer(AppState state, action) {
     return state.copyWith(
       publish: PublishState(),
     );
-  } else if (action is PersistLoadedAction<AppState>) {
-    return action.state ?? state;
-  } else if (action is PersistErrorAction) {
-    print(action.error);
-    return AppState();
   } else {
     return state.copyWith(
       account: accountReducer(state.account, action),

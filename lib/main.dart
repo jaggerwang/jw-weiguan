@@ -3,11 +3,12 @@ import 'package:package_info/package_info.dart';
 
 import 'app.dart';
 import 'config.dart';
+import 'factory.dart';
 
-void main() {
-  PackageInfo.fromPlatform().then((packageInfo) {
-    WgConfig.packageInfo = packageInfo;
+void main() async {
+  WgConfig.packageInfo = await PackageInfo.fromPlatform();
 
-    runApp(WgApp());
-  });
+  final store = await WgFactory().getStore();
+
+  runApp(WgApp(store));
 }

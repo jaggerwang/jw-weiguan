@@ -12,16 +12,14 @@ NoticeEntity _$NoticeEntityFromJson(Map<String, dynamic> json) {
       level: _$enumDecodeNullable(_$NoticeLevelEnumMap, json['level']),
       duration: json['duration'] == null
           ? null
-          : durationFromMillseconds(json['duration'] as int));
+          : Duration(microseconds: json['duration'] as int));
 }
 
 Map<String, dynamic> _$NoticeEntityToJson(NoticeEntity instance) =>
     <String, dynamic>{
       'message': instance.message,
       'level': _$NoticeLevelEnumMap[instance.level],
-      'duration': instance.duration == null
-          ? null
-          : durationToMilliseconds(instance.duration)
+      'duration': instance.duration?.inMicroseconds
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
