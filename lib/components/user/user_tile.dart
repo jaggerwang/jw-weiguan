@@ -18,9 +18,9 @@ class UserTile extends StatelessWidget {
     StoreProvider.of<AppState>(context).dispatch(followUserAction(
       followingId: user.id,
       onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(notice.message),
-            duration: notice.duration,
-          )),
+        content: Text(notice.message),
+        duration: notice.duration,
+      )),
     ));
   }
 
@@ -28,9 +28,9 @@ class UserTile extends StatelessWidget {
     StoreProvider.of<AppState>(context).dispatch(unfollowUserAction(
       followingId: user.id,
       onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(notice.message),
-            duration: notice.duration,
-          )),
+        content: Text(notice.message),
+        duration: notice.duration,
+      )),
     ));
   }
 
@@ -39,8 +39,8 @@ class UserTile extends StatelessWidget {
     return ListTile(
       key: Key(user.id.toString()),
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => UserPage(userId: user.id),
-          )),
+        builder: (context) => UserPage(userId: user.id),
+      )),
       leading: CircleAvatar(
         radius: 25,
         backgroundImage:

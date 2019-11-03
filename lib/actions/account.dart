@@ -111,6 +111,7 @@ ThunkAction<AppState> accountEditAction({
     };
 
 ThunkAction<AppState> accountSendMobileVerifyCodeAction({
+  @required String type,
   @required String mobile,
   void Function() onSucceed,
   void Function(NoticeEntity) onFailed,
@@ -119,7 +120,7 @@ ThunkAction<AppState> accountSendMobileVerifyCodeAction({
       final wgService = await WgFactory().getWgService();
       final response = await wgService.post(
         '/account/send/mobile/verify/code',
-        data: {'mobile': mobile},
+        data: {'type': type, 'mobile': mobile},
       );
 
       if (response.code == WgApiResponse.codeOk) {

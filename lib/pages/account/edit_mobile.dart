@@ -78,9 +78,9 @@ class _BodyState extends State<_Body> {
         form: _form,
         onSucceed: (user) => Navigator.of(context).pop(),
         onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(notice.message),
-              duration: notice.duration,
-            )),
+          content: Text(notice.message),
+          duration: notice.duration,
+        )),
       ));
     }
   }
@@ -89,14 +89,15 @@ class _BodyState extends State<_Body> {
     _formKey.currentState.save();
 
     widget.store.dispatch(accountSendMobileVerifyCodeAction(
+      type: 'edit',
       mobile: _form.mobile,
       onSucceed: () => Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('发送成功'),
-          )),
+        content: Text('发送成功'),
+      )),
       onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(notice.message),
-            duration: notice.duration,
-          )),
+        content: Text(notice.message),
+        duration: notice.duration,
+      )),
     ));
   }
 

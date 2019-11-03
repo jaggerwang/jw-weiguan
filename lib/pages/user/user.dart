@@ -133,7 +133,7 @@ class _BodyState extends State<_Body> {
 
   void _loadUserInfo() {
     widget.store.dispatch(userInfoAction(
-      userId: widget.vm.user.id,
+      id: widget.vm.user.id,
       onFailed: (notice) => Scaffold.of(context).showSnackBar(SnackBar(
         content: Text(notice.message),
         duration: notice.duration,

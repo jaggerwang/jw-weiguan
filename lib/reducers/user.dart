@@ -94,7 +94,7 @@ UserState _followers(UserState state, FollowersAction action) {
 }
 
 UserState _followUser(UserState state, FollowUserAction action) {
-  var userId = action.userId.toString();
+  var userId = action.followerId.toString();
   var followingId = action.followingId.toString();
 
   var users = Map<String, UserEntity>.from(state.users);
@@ -113,7 +113,7 @@ UserState _followUser(UserState state, FollowUserAction action) {
 }
 
 UserState _unfollowUser(UserState state, UnfollowUserAction action) {
-  var userId = action.userId.toString();
+  var userId = action.followerId.toString();
   var followingId = action.followingId.toString();
 
   var users = Map<String, UserEntity>.from(state.users);

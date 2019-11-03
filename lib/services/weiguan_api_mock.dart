@@ -359,19 +359,6 @@ final mockApis = <String, Future Function(String, dynamic)>{
               'user': _users.firstWhere((v) => v['id'] == data['userId']),
             }
           }),
-  '/user/infos': (String method, dynamic data) => Future.delayed(
-      Duration(
-        seconds: _random.nextInt(2) + 1,
-        milliseconds: _random.nextInt(1000),
-      ),
-      () => {
-            'code': 0,
-            'message': '',
-            'data': {
-              'users': (data['ids'] as List<int>)
-                  .map((v) => _users.firstWhere((v1) => v1['id'] == v)),
-            }
-          }),
   '/user/followings': (String method, dynamic data) => Future.delayed(
       Duration(
         seconds: _random.nextInt(2) + 1,
